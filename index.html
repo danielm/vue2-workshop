@@ -5,12 +5,27 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VueJS Workshop</title>
+
+  <style>
+    .green {
+      color: darkgreen;
+    }
+    .red {
+      color: darkred;
+    }
+    .orange {
+      color: orange;
+    }
+    .bold {
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-  <div id="app">
+  <div id="app" style="margin:5px;padding: 5px;" v-bind:style="{ background: '#' + color}">
     <img v-bind:src="img" v-bind:alt="name" style="width: 50px;">
-    <h1>
-      {{ name }}
+    <h1 v-bind:class=" changePercent > 0 ? 'green' : 'red'">
+      {{ title }}
       <!-- v-if removes the element from dom if condition is not met -->
       <span v-if="changePercent > 0">:)</span>
       <span v-else-if="changePercent < 0">:(</span>
@@ -22,13 +37,44 @@
       <span v-show="changePercent == 0">:|</span>
     </h1>
 
-    <ul>
-      <li v-for="(p, i) in prices" v-bind:key="p">{{ i }} - ${{ p }}</li>
-    </ul>
+    <hr />
 
-    <ul>
-      <li v-for="(p, i) in pricesWithDays" v-bind:key="p.day">{{ i }} - {{ p.day }} - ${{ p.value }}</li>
-    </ul>
+    Enter USD: <input type="number" v-model="value">
+    Equals <span>{{ convertedValue }}</span> BTC
+
+    <hr />
+
+    <a href="#" v-on:click="toggleShowPrices">{{ showPrices ? 'Hide' : 'Show' }} Prices</a>
+
+    <hr />
+
+    <div v-show=showPrices>
+      <ul v-show=showPrices>
+        <li
+          class="bold"
+          v-for="(p, i) in prices"
+          v-bind:key="p"
+          v-bind:class="{ orange: p == price, red: p.value < price }"
+        >
+          {{ i }} - ${{ p }}
+        </li>
+      </ul>
+
+      <ul v-show=showPrices>
+        <li
+          class="bold"
+          v-for="(p, i) in pricesWithDays"
+          v-bind:key="p.day"
+          v-bind:class="{ orange: p.value == price, red: p.value < price }"
+        >
+          {{ i }} - {{ p.day }} - ${{ p.value }}
+        </li>
+      </ul>
+
+      <hr />
+    </div>
+
+    
 
   </div>
   
