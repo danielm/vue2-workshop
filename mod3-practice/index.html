@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VueJS | Modal exercise</title>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <button v-on:click="toggleModal">Show Modal</button>
+    
+    <modal
+      v-show="showModal"
+      v-on:close="toggleModal"
+      v-bind:title="title"
+      >
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam at suscipit lectus. Sed nulla sem, commodo a mi sed, venenatis imperdiet dolor.
+        Praesent felis magna, varius et semper sit amet, convallis sit amet diam. Praesent sit amet nunc in orci pharetra elementum eget et dui.
+        Aenean pellentesque dignissim nibh, quis rhoncus risus euismod in.
+      </p>
+    </modal>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
