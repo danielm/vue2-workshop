@@ -23,58 +23,16 @@
 </head>
 <body>
   <div id="app" style="margin:5px;padding: 5px;" v-bind:style="{ background: '#' + color}">
-    <img v-bind:src="img" v-bind:alt="name" style="width: 50px;">
-    <h1 v-bind:class=" changePercent > 0 ? 'green' : 'red'">
-      {{ title }}
-      <!-- v-if removes the element from dom if condition is not met -->
-      <span v-if="changePercent > 0">:)</span>
-      <span v-else-if="changePercent < 0">:(</span>
-      <span v-else>:|</span>
-
-      <!-- v-show ads display:non when condition is not met -->
-      <span v-show="changePercent > 0">:)</span>
-      <span v-show="changePercent < 0">:(</span>
-      <span v-show="changePercent == 0">:|</span>
-    </h1>
-
-    <hr />
-
-    Enter USD: <input type="number" v-model="value">
-    Equals <span>{{ convertedValue }}</span> BTC
-
-    <hr />
-
-    <a href="#" v-on:click="toggleShowPrices">{{ showPrices ? 'Hide' : 'Show' }} Prices</a>
-
-    <hr />
-
-    <div v-show=showPrices>
-      <ul v-show=showPrices>
-        <li
-          class="bold"
-          v-for="(p, i) in prices"
-          v-bind:key="p"
-          v-bind:class="{ orange: p == price, red: p.value < price }"
-        >
-          {{ i }} - ${{ p }}
-        </li>
-      </ul>
-
-      <ul v-show=showPrices>
-        <li
-          class="bold"
-          v-for="(p, i) in pricesWithDays"
-          v-bind:key="p.day"
-          v-bind:class="{ orange: p.value == price, red: p.value < price }"
-        >
-          {{ i }} - {{ p.day }} - ${{ p.value }}
-        </li>
-      </ul>
-
-      <hr />
-    </div>
-
     
+    <coin-detail
+      v-bind:coin="btc"
+      v-on:change-color="updateColor"
+    ></coin-detail>
+    
+    <coin-detail
+    v-bind:coin="btc"
+    v-on:change-color="updateColor"
+  ></coin-detail>
 
   </div>
   
