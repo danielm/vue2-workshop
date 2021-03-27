@@ -26,13 +26,21 @@
     
     <coin-detail
       v-bind:coin="btc"
-      v-on:change-color="updateColor"
-    ></coin-detail>
-    
-    <coin-detail
-    v-bind:coin="btc"
-    v-on:change-color="updateColor"
-  ></coin-detail>
+      v-on:change-color="updateColor">
+  
+      <template v-slot:text>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In venenatis dui tellus, id posuere orci eleifend a.
+        </p>
+      </template>
+      <template v-slot:link>
+        <p>
+          <a href="https://daniel.uy">Visit my homepage!</a>
+        </p>
+      </template>
+
+    </coin-detail>
+
 
   </div>
   

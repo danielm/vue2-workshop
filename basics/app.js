@@ -32,6 +32,16 @@ Vue.component('CoinDetail', {
     }
   },
 
+  created(){
+    // After parent component is created() and before mounted()
+    console.log('created coin detail');
+  },
+
+  mounted(){
+    // called before parent mounted() as well.
+    console.log('mounted coin detail');
+  },
+
   template: `
     <div>
       <img v-bind:src="coin.img" v-bind:alt="coin.name" style="width: 50px;">
@@ -70,6 +80,11 @@ Vue.component('CoinDetail', {
           </li>
         </ul>
       </div>
+
+      <hr />
+
+      <slot name="text"></slot>
+      <slot name="link"></slot>
 
     </div>
   `
@@ -113,5 +128,15 @@ new Vue({
         this.color = 'f4f4f4';
       }
     }
-  }
+  },
+
+  created(){
+    // Good place to get information from a server/API and populate my component with info from it
+    console.log('created');
+  },
+
+  mounted(){
+    // Doom availabe: can access stuf like HTML elements (not available on created())
+    console.log('mounted');
+  },
 });
