@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VueJS workshop practice</title>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <h1>
+      My Courses
+    </h1>
+      <p>
+        <input v-model="course_title" type="text" placeholder="Course name"/>
+      </p>
+      <p>
+        <input v-model="course_time" type="number" placeholder="Hours"/>
+      </p>
+      <p>
+        <button v-on:click="addCourse">Save Course</button>
+      </p>
+    </fieldset>
+    <div>
+      <h3>Course List</h3>
+      <p class="red" v-show="!courses.length">No Courses taken so far.</p>
+      <div v-show="courses.length">
+        <ol>
+          <li
+            v-for="c in courses"
+            v-bind:key="c.title"
+          >
+            <strong>{{ c.title }}</strong> - {{ c.time }} hours
+          </li>
+        </ol>
+        <hr/>
+        <p>
+          You've taken <strong>{{ totalTime }}</strong> hours of training.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
